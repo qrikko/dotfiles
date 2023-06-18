@@ -1,5 +1,5 @@
 #!/bin/sh
-dotdir=~/.dotfiles/dotfiles
+dotdir=$PWD
 confdir=~/.config
 
 ln -sf "${dotdir}/picom.conf" $confdir/ 
