@@ -1,0 +1,82 @@
+#!/bin/sh
+
+export XDG_RUNTIME_DIR="/run/user/1000/"
+export SXHKD_FIFO="$XDG_RUNTIME_DIR"/sxhkd.fifo
+
+setxkbmap -option grp:alt_shift_toggle us,se &
+
+pkill sxhkd
+picom --config ~/.config/picom.conf &
+nitrogen --restore &
+
+~/.config/polybar/launch.sh
+sxhkd &
+#~/.config/bspwm/sxhkdstart.sh > /tmp/sxhkdstart.log 2>&1
+
+# Enable NumLock
+if [ -x /usr/bin/setleds ]; then
+    numlockx on
+fi
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9
+
+################
+bspc config desktop -d '^2' layout monocle
+
+################
+## BSPWM Rules
+bspc rule -a Firefox desktop='^1'
+bspc rule -a code-oss desktop='^2' 
+bspc rule -a Gimp desktop='^3' state=floating follow=on
+bspc rule -a UnityHub desktop='^5' state=floating follow=on
+bspc rule -a Unity desktop='^5' state=fullscreen follow=on
+bspc rule -a mpv state=floating
+bspc rule -a Screenkey manage=off
+bspc rule -a dropdown state=floating sticky=on
+bspc rule -a teh_engine state=pseudo_tiled
+bspc rule -a *:*:Picture\ in\ picture state=floating
+
+################
+## Script
+#wm_name=$(xprop -id "$1" WM_NAME | awk -F '=' '{ print $2 }' | tr -d '[:space:]')
+#if [[ "$wm_name" == "Picture in picture" ]]; then
+#    # Set the window as floating
+#    bspc rule -a "WM_NAME=Picture in picture" state=floating
+#fi
+
+
+###############
+## BSPWM config
+bspc config border_width                2
+bspc config border_width_focused		2
+bspc config window_gap                  3
+bspc config top_padding                 20
+bspc config bottom_padding              0
+bspc config left_padding                0
+bspc config right_padding               0
+bspc config single_monocle              false
+bspc config click_to_focus              true
+bspc config split_ratio                 0.50
+bspc config borderless_monocle          true
+bspc config gapless_monocle             true
+bspc config focus_by_distance           true
+#bspc config focus_follows_pointer      true
+bspc config history_aware_focus         true
+bspc config remove_disabled_monitors    true
+bspc config merge_overlapping_monitors  true
+
+#bspc config pointer_motion_interval 40
+
+bspc config pointer_modifier 			mod4
+bspc config pointer_action1 			move
+bspc config pointer_action2 			resize_side
+bspc config pointer_action3 			resize_corner
+
+#################
+## BSPWM Coloring
+bspc config focused_border_color  			"#FF9F44"
+bspc config focused_shadow_color			"#2583D9"
+bspc config normal_border_color   			"#2583D9"
+
+bspc config presel_feedback_color 			"#5e81ac"
+bspc config urgent_border_color   			"#dd2727"
