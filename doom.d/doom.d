@@ -1,0 +1,1 @@
+/home/qrikko/.dotfiles/dotfiles/doom.d
