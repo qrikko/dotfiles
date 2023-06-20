@@ -2,6 +2,7 @@
 dotdir=$PWD
 confdir=~/.config
 
+ln -sf "${dotdir}/zshrc" ~/.zshrc
 ln -sf "${dotdir}/picom.conf" $confdir/ 
 ln -sf "${dotdir}/bspwm" $confdir/
 ln -sf "${dotdir}/sxhkd" $confdir/
