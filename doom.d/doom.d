@@ -1,1 +1,1 @@
-/home/qrikko/.dotfiles/dotfiles/doom.d
+./doom.d

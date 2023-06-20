@@ -1,14 +1,25 @@
-#!/bin/sh
-dotdir=$PWD
+#!/usr/bin/env zsh
+
+#ln -sf ./zshrc ~/.zshrc
+cp -f ./zshrc ~/.zshrc
+source ~/.zshrc
+
 confdir=~/.config
 
-ln -sf "${dotdir}/zshrc" ~/.zshrc
-ln -sf "${dotdir}/picom.conf" $confdir/ 
-ln -sf "${dotdir}/bspwm" $confdir/
-ln -sf "${dotdir}/sxhkd" $confdir/
-ln -sf "${dotdir}/polybar" $confdir/
-ln -sf "${dotdir}/tmux.conf" ~/.tmux.conf
-ln -sf "${dotdir}/doom.d" ~/.doom.d
-ln -sf "${dotdir}/emacs.d" ~/.emacs.d
+cp -rf ./picom.conf $confdir/ 
+cp -rf  ./bspwm $confdir/
+cp -rf  ./sxhkd $confdir/
+cp -rf  ./polybar $confdir/
+cp -rf  ./doom.d ~/.doom.d
+cp -rf  ./emacs.d ~/.emacs.d
+cp -f  ./tmux.conf ~/.tmux.conf
+
+#ln -sf ./picom.conf $confdir/ 
+#ln -sf ./bspwm $confdir/
+#ln -sf ./sxhkd $confdir/
+#ln -sf ./polybar $confdir/
+#ln -sf ./tmux.conf ~/.tmux.conf
+#ln -sf ./doom.d ~/.doom.d
+#ln -sf ./emacs.d ~/.emacs.d
 
 bspc wm -r
