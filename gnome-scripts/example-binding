@@ -1,0 +1,1 @@
+sh /home/qrikko/.config/gnome-scripts/toggle.sh "emacsclient -c" "fullscreen"
