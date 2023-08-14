@@ -10,7 +10,7 @@ picom --config ~/.config/picom.conf &
 nitrogen --restore &
 
 ~/.config/polybar/launch.sh
-sxhkd &
+sxhkd -c ~/.config/bspwm/sxhkdrc &
 #~/.config/bspwm/sxhkdstart.sh > /tmp/sxhkdstart.log 2>&1
 
 # Enable NumLock
