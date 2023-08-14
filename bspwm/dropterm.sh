@@ -20,6 +20,8 @@ if [ -z "$id" ]; then
 		alacritty -T dropdown -o "window.dimensions.lines=45" -o "window.dimensions.columns=200" &
 	elif [ "$1" == "Doom Emacs" ]; then
 		emacs -g 234x61+15+30
+	else 
+		exit
 	fi
 
 	while [ -z "$id" ]; do

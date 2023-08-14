@@ -74,7 +74,7 @@ super + {h,l}
 	bspc desktop -f {prev,next}
 
 # Bring node to next/prev desktop
-super + alt + {h,l}
+super + ctrl + {h,l}
 	bspc node -d {prev.local,next.local} --focus 
 
 # Send to desktop
@@ -87,7 +87,10 @@ super + Return
 
 ## rofi
 super + @space
-	rofi -show run
+	rofi -show drun
+
+super + @b
+	brave
 
 # toggle between the tiled and monocle layout
 super + f
