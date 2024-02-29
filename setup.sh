@@ -17,6 +17,7 @@ confdir=~/.config
 #cp -f  ./tmux.conf ~/.tmux.conf
 
 ln -sf ./picom.conf $confdir/ picom.conf
+ln -s ~/.dotfiles/dotfiles/nvim ~/.config/nvim
 #ln -sf ./bspwm $confdir/
 #ln -sf ./sxhkd $confdir/
 #ln -sf ./polybar $confdir/
