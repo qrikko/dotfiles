@@ -4,9 +4,12 @@
 ln -sf ~/dotfiles/zshrc ~/.zshrc
 source ~/.zshrc
 
-sudo pacman -S sxhkd bspwm picom polybar
+#sudo pacman -S sxhkd bspwm picom polybar
 
 confdir=~/.config
+ln -s ~/.dotfiles/dotfiles/nvim ~/.config/nvim
+ln -s ~/.dotfiles/dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/dotfiles/gnome-scripts ~/.config/gnome-scripts 
 
 #cp -rf ./picom.conf $confdir/ 
 #cp -rf  ./bspwm $confdir/
@@ -16,8 +19,7 @@ confdir=~/.config
 #cp -rf  ./emacs.d ~/.emacs.d
 #cp -f  ./tmux.conf ~/.tmux.conf
 
-ln -sf ./picom.conf $confdir/ picom.conf
-ln -s ~/.dotfiles/dotfiles/nvim ~/.config/nvim
+#ln -sf ./picom.conf $confdir/ picom.conf
 #ln -sf ./bspwm $confdir/
 #ln -sf ./sxhkd $confdir/
 #ln -sf ./polybar $confdir/
