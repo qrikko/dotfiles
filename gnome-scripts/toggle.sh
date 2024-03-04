@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # the way to run it is to send one parameter containing an identifiable
 # part of the window name
@@ -9,6 +9,19 @@
 log() {
 	echo $1 >> ~/tmp/toggle.loggel.log
 }
+
+sessionstr="~~ Using: $XDG_SESSION_TYPE ~~"
+rowlen=${#sessionstr}
+header_tilde=$(printf "%0.s~" $(seq 1 $rowlen))
+log $header_tilde
+log $sessionstr
+log $header_tilde
+
+if [[ "$1" == "-l" ]]; then
+	log "Show log mode active"
+	watch -n 2 cat ~/tmp/toggle.loggel.log
+	exit
+fi
 
 pwd=$(dirname $(readlink -f $0))
 
@@ -43,7 +56,7 @@ if [[ -z $(pgrep $app) ]]; then
 			app_id=''
 		fi
 
-		(( timeout -= interval ))
+		(( timeout = timeout - interval ))
 
 		if (( timeout <= 0 )); then
 			log "$app failed to start"

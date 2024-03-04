@@ -9,6 +9,12 @@ echo -n "Install (super-user needed!)  [s]xhkd, [b]spwm, [p]icom, poly[b]ar, [d]
 install=""
 read input
 len=${#input}
+#sudo pacman -S sxhkd bspwm picom polybar
+
+confdir=~/.config
+ln -s ~/.dotfiles/dotfiles/nvim ~/.config/nvim
+ln -s ~/.dotfiles/dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/dotfiles/gnome-scripts ~/.config/gnome-scripts 
 
 for ((i=0; i<$len; i++)); do
 	#char="${input:i:1}"
@@ -31,7 +37,7 @@ if [[ $install_doom == true ]]; then
 	~/.config/emacs/bin/doom install
 fi
 
-ln -sf ./picom.conf $confdir/ picom.conf
+#ln -sf ./picom.conf $confdir/ picom.conf
 #ln -sf ./bspwm $confdir/
 #ln -sf ./sxhkd $confdir/
 #ln -sf ./polybar $confdir/

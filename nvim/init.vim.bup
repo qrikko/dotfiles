@@ -1,0 +1,80 @@
+set number
+set showcmd
+syntax on
+set tabstop=4
+set shiftwidth=4
+set hlsearch
+set nocompatible
+set mouse=a
+set signcolumn=yes
+"colorscheme habamax
+colorscheme evening
+set cursorline
+hi CursorLine cterm=bold ctermbg=black ctermfg=none
+
+set clipboard=unnamedplus
+
+" Enable syntax highlighting for specific file types
+autocmd FileType conf,shellscript syntax enable
+
+set statusline=%{&showcmd}\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+let g:mapleader = "\\"
+
+call plug#begin()
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+Plug 'neovim/nvim-lspconfig'
+call plug#end()
+
+lua << EOF
+	au FileType c,cpp lua require('nvim_lsp').clangd.setup{}
+EOF
+
+"================ Termdebug settings
+packadd termdebug
+let g:termdebug_popup = 0
+let g:termdebug_wide = 163
+let g:termdebug_exe = 'gdb'
+
+filetype plugin indent on
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+"================ Vundle Plugins
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+	Plugin 'VundleVim/Vundle.vim'
+	Plugin 'prabirshrestha/vim-lsp'
+	Plugin 'tikhomirov/vim-glsl'
+	Plugin 'KabbAmine/vCoolor.vim'
+	Plugin 'flazz/vim-colorschemes'
+	Plugin 'puremourning/vimspector'
+	Plugin 'preservim/nerdcommenter'
+
+call vundle#end()
+
+"================ Plugin settings
+au User lsp_setup call lsp#register_server({'name': 'clangd', 'cmd': {server_info->['clangd', '--background-index']}, 'whitelist': ['c', 'cpp'] })
+au BufRead,BufNewFile *.frag set filetype=glsl
+au BufRead,BufNewFile *.vert set filetype=glsl
+au BufRead,BufNewFile *.glsl set filetype=glsl
+
+"================ Remappings
+nnoremap = :let y=input('=')<bar>execute 'normal! "'.y<CR>
+vnoremap / y/\V<C-R>=escape(@", '/\')<CR><CR>
+vnoremap ? y?\V<C-R>=escape(@", '/\')<CR><CR>
+nnoremap <leader>dm :execute 'delmarks ' . line('.')<CR>
+
+"noremap ty "+y
+"noremap tY "+Y  // copy a whole line to the clipboard
+"noremap tp "+p  // put the text from clipboard after the cursor 
+"noremap tP "+P  // put the text from clipboard before the cursor 
+
+" Copy/paste from system clipboard
+"vnoremap y "+y
+"inoremap <C-V> <C-O>"+p
+
+" Clear search
+nnoremap <silent> <C-l> :nohlsearch<CR>
